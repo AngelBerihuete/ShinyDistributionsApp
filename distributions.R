@@ -2,9 +2,9 @@ library(shiny)
 
 # To be called from server.R
 ####################################################
-# 連続分布
+# Continuous distributions
 ####################################################
-# F分布
+# F-distribution
 f.func <- function(df1, df2, p_or_c){
   ncp <- 0
   if(p_or_c == "p"){
@@ -15,7 +15,7 @@ f.func <- function(df1, df2, p_or_c){
   return(func)
 }
 
-# 非心F分布
+# Noncentral F-distribution
 ncf.func <- function(df1, df2, ncp, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) df(x, df1, df2, ncp)
@@ -25,7 +25,7 @@ ncf.func <- function(df1, df2, ncp, p_or_c){
   return(func)
 }
 
-# カイ二乗分布
+# Chi-squared distribution
 chisq.func <- function(df, p_or_c){
   ncp <- 0
   if(p_or_c == "p"){
@@ -36,7 +36,7 @@ chisq.func <- function(df, p_or_c){
   return(func)
 }
 
-# 非心カイ二乗分布
+# Noncentral chi-squared distribution Noncentralカイ二乗 distribution
 ncChisq.func <- function(df, ncp, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dchisq(x, df, ncp)
@@ -46,7 +46,7 @@ ncChisq.func <- function(df, ncp, p_or_c){
   return(func)
 }
 
-# ガンマ分布
+# Gamma distribution
 gamma.func <- function(shape, scale, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dgamma(x, shape, scale)
@@ -56,7 +56,7 @@ gamma.func <- function(shape, scale, p_or_c){
   return(func)
 }
 
-# コーシー分布
+# Cauchy distribution
 cauchy.func <- function(location, scale, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dcauchy(x, location, scale)
@@ -66,7 +66,7 @@ cauchy.func <- function(location, scale, p_or_c){
   return(func)
 }
 
-# 指数分布
+# Exponential distribution
 exp.func <- function(rate, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dexp(x, rate)
@@ -76,7 +76,7 @@ exp.func <- function(rate, p_or_c){
   return(func)
 }
 
-# 正規分布
+# Normal distribution
 norm.func <- function(mean, sd, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dnorm(x, mean, sd)
@@ -86,7 +86,7 @@ norm.func <- function(mean, sd, p_or_c){
   return(func)
 }
 
-# 対数正規分布
+# Log-normal distribution
 lnorm.func <- function(meanlog, sdlog, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dlnorm(x, meanlog, sdlog)
@@ -96,7 +96,7 @@ lnorm.func <- function(meanlog, sdlog, p_or_c){
   return(func)
 }
 
-# t分布
+# t-distribution
 t.func <- function(df, p_or_c){
   ncp <- 0
   if(p_or_c == "p"){
@@ -107,7 +107,7 @@ t.func <- function(df, p_or_c){
   return(func)
 }
 
-# 非心t分布
+# Noncentral t-distribution
 nct.func <- function(df, ncp, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dt(x, df, ncp)
@@ -117,7 +117,7 @@ nct.func <- function(df, ncp, p_or_c){
   return(func)
 }
 
-# ベータ分布
+# Beta distribution
 beta.func <- function(shape1, shape2, p_or_c){
   ncp <- 0
   if(p_or_c == "p"){
@@ -128,7 +128,7 @@ beta.func <- function(shape1, shape2, p_or_c){
   return(func)
 }
 
-# 非心ベータ分布
+# Noncentral beta distribution
 ncbeta.func <- function(shape1, shape2, ncp, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dbeta(x, shape1, shape2, ncp)
@@ -138,7 +138,7 @@ ncbeta.func <- function(shape1, shape2, ncp, p_or_c){
   return(func)
 }
 
-# 一様分布
+# Uniform distribution
 unif.func <- function(min, max, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dunif(x, min, max)
@@ -148,7 +148,7 @@ unif.func <- function(min, max, p_or_c){
   return(func)
 }
 
-# ロジスティック分布
+# Logistic distribution
 logis.func <- function(location, scale, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dlogis(x, location, scale)
@@ -158,7 +158,7 @@ logis.func <- function(location, scale, p_or_c){
   return(func)
 }
 
-# ワイブル分布
+# Weibull distribution
 weibull.func <- function(shape, scale, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dweibull(x, shape, scale)
@@ -169,9 +169,9 @@ weibull.func <- function(shape, scale, p_or_c){
 }
 
 ####################################################
-# 離散分布
+# Discrete distribution
 ####################################################
-# 幾何分布
+# Geometric distribution
 geom.func <- function(prob, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dgeom(x, prob)
@@ -181,7 +181,7 @@ geom.func <- function(prob, p_or_c){
   return(func)
 }
 
-# 超幾何分布
+# Hypergeometric distribution
 hyper.func <- function(m, n, k, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dhyper(x, m, n, k)
@@ -191,7 +191,7 @@ hyper.func <- function(m, n, k, p_or_c){
   return(func)
 }
 
-# 二項分布
+# Binomial distribution
 binom.func <- function(size, prob, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dbinom(x, size, prob)
@@ -201,7 +201,7 @@ binom.func <- function(size, prob, p_or_c){
   return(func)
 }
 
-# 負の二項分布
+# Negative binomial distribution
 nbinom.func <- function(size, prob, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dnbinom(x, size, prob)
@@ -211,7 +211,7 @@ nbinom.func <- function(size, prob, p_or_c){
   return(func)
 }
 
-# ポアソン分布
+# Poisson distribution
 pois.func <- function(lambda, p_or_c){
   if(p_or_c == "p"){
     func <- function(x) dpois(x, lambda)
@@ -221,7 +221,7 @@ pois.func <- function(lambda, p_or_c){
   return(func)
 }
 
-# # 離散一様分布
+# # Discrete uniform distribution
 # dunif.func <- function(min, max, p_or_c){
 #   if(p_or_c == "p"){
 #     func <- function(x) dunif(x, min, max)

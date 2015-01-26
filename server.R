@@ -188,7 +188,7 @@ shinyServer(function(input, output) {
   })
 
   ####################################################
-  # 離散分布
+  # Discrete distributions
   ####################################################
   output$geomPlot <- renderNvd3Chart({
     func <- geom.func(input$geom.prob, input$geom.p_or_c)
