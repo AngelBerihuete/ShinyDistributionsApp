@@ -2,13 +2,13 @@
 
 
 This web app enables visual inspection of various probability distributions commonly used in statistics.
-You can modify the parameters, and check how they influence the distributions.
+You can modify their parameters, and check how they influence the distributions.
  From the **menu above**, choose a probability distribution of interest.
 
-The web app was authored by <a href="https://twitter.com/ksmzn">@ksmzn</a> using the <a href="http://shiny.rstudio.com/">Shiny</a> R web app framework. <a href="https://twitter.com/kaz_yos">@kaz_yos</a> translated it to English. 
+The web app was authored by <a href="https://twitter.com/ksmzn">@ksmzn</a> using the <a href="http://shiny.rstudio.com/">Shiny</a> R web app framework and the NVD3.js graphing framework. <a href="https://twitter.com/kaz_yos">@kaz_yos</a> translated it into English.
 
-The original code is avaialbe at: https://github.com/ksmzn/ShinyDistributionsApp
-The English translation is avialble at: https://github.com/kaz-yos/ShinyDistributionsApp
+- The original code is avaialbe at: https://github.com/ksmzn/ShinyDistributionsApp
+- The English translation is avialble at: https://github.com/kaz-yos/ShinyDistributionsApp
 
 ### References (first two are in Japanese)
 
