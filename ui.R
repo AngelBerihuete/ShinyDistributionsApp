@@ -3,7 +3,7 @@ library(shiny)
 library(rmarkdown)
 library(rCharts)
 pageTitle <- "Probability distribution live demo app by @ksmzn #Shiny "
-statDist <- "Probability distributions"
+statDist <- "Probability Distributions by @ksmzn" # Title
 titleLink <- span(statDist)
 googleAnalytics <- tags$head(includeScript("js/google-analytics.js"))
 distPanel <- function(name){
@@ -149,7 +149,7 @@ shinyUI(
             helpText("$$f_X(x; k,\\lambda) =
               \\sum_{i=0}^\\infty \\frac{e^{-\\lambda/2} (\\lambda/2)^i}{i!} f_{Y_{k+2i}}(x)
               \\ \\ \\ \\ \\mathrm{for\\ } x > 0\\\\
-              \\\\ Y_q \\mathrm{\\ follows chi-squared distribution with DF \\ } q $$")
+              \\\\ Y_q \\mathrm{\\ follows\\ chi-squared\\ distribution\\ with\\ DF \\ } q $$")
           )
         ),
         sidebarLayout(
@@ -161,7 +161,7 @@ shinyUI(
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
             sliderInput(paste("ncChisq", "df", sep="."), "DF \\(k\\)",
                         min = 1, max = 20, value = 1, step= 1),
-            sliderInput(paste("ncChisq", "ncp", sep="."), "非中心度 \\(\\lambda\\)",
+            sliderInput(paste("ncChisq", "ncp", sep="."), "Noncentrality \\(\\lambda\\)",
                         min = 0, max = 20, value = 0, step= 0.1)
           ),
           mainPanel(
@@ -185,7 +185,7 @@ shinyUI(
             ),
             sliderInput(paste("gamma", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
-            sliderInput(paste("gamma", "shape", sep="."), "形状 \\(k\\)",
+            sliderInput(paste("gamma", "shape", sep="."), "Shape \\(k\\)",
                         min = 0, max = 20, value = 1, step= 0.1),
             sliderInput(paste("gamma", "scale", sep="."), "尺度 \\(\\theta\\)",
                         min = 0, max = 20, value = 1, step= 0.1)
@@ -354,9 +354,9 @@ shinyUI(
             ),
             sliderInput(paste("beta", "range", sep="."), "Range",
                         min = 0, max = 1, value = c(0, 1), step= 0.01),
-            sliderInput(paste("beta", "shape1", sep="."), "形状 \\(\\alpha\\)",
+            sliderInput(paste("beta", "shape1", sep="."), "Shape \\(\\alpha\\)",
                         min = 0, max = 20, value = 2, step= 0.1),
-            sliderInput(paste("beta", "shape2", sep="."), "形状 \\(\\beta\\)",
+            sliderInput(paste("beta", "shape2", sep="."), "Shape \\(\\beta\\)",
                         min = 0, max = 20, value = 2, step= 0.1)
           ),
           mainPanel(
@@ -382,11 +382,11 @@ shinyUI(
             ),
             sliderInput(paste("ncbeta", "range", sep="."), "Range",
                         min = 0, max = 1, value = c(0, 1), step= 0.01),
-            sliderInput(paste("ncbeta", "shape1", sep="."), "形状 \\(\\alpha\\)",
+            sliderInput(paste("ncbeta", "shape1", sep="."), "Shape \\(\\alpha\\)",
                         min = 0, max = 20, value = 2, step= 0.1),
-            sliderInput(paste("ncbeta", "shape2", sep="."), "形状 \\(\\beta\\)",
+            sliderInput(paste("ncbeta", "shape2", sep="."), "Shape \\(\\beta\\)",
                         min = 0, max = 20, value = 2, step= 0.1),
-            sliderInput(paste("ncbeta", "ncp", sep="."), "非中心度 \\(\\lambda\\)",
+            sliderInput(paste("ncbeta", "ncp", sep="."), "Noncentrality \\(\\lambda\\)",
                         min = 0, max = 20, value = 0, step= 0.1)
           ),
           mainPanel(
@@ -397,8 +397,8 @@ shinyUI(
 #       tabPanel("Laplace distribution"),
 #       tabPanel("Rayleigh distribution"),
 #       tabPanel("Lévy distribution"),
-      tabPanel("(Continuous) uniform distribution",
-        distPanel("(Continuous) uniform distribution"),
+      tabPanel("Uniform distribution",
+        distPanel("Uniform distribution"),
         fluidRow(
           column(12,
             helpText("$$
@@ -443,9 +443,9 @@ shinyUI(
             ),
             sliderInput(paste("logis", "range", sep="."), "Range",
                         min = -100, max = 100, value = c(-10, 10), step= 0.5),
-            sliderInput(paste("logis", "location", sep="."), "位置 \\(\\mu\\)",
+            sliderInput(paste("logis", "location", sep="."), "Location \\(\\mu\\)",
                         min = -20, max = 20, value = 2, step= 0.1),
-            sliderInput(paste("logis", "scale", sep="."), "尺度 \\(s\\)",
+            sliderInput(paste("logis", "scale", sep="."), "Scale \\(s\\)",
                         min = 0, max = 20, value = 1, step= 0.1)
           ),
           mainPanel(
@@ -481,7 +481,7 @@ shinyUI(
         )
       )
     ),
-    navbarMenu("Discrete distribution",
+    navbarMenu("Discrete distributions",
       tabPanel("Geometric distribution",
         distPanel("Geometric distribution"),
         fluidRow(
