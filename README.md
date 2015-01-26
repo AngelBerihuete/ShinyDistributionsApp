@@ -4,7 +4,7 @@ ShinyDistributionsApp
 ## Shiny web app for live demonstration of probability distributions
 
 - Original Japanese version: https://ksmzn.shinyapps.io/statdist/
-- English translation: 
+- English translation: http://kaz-yos.shinyapps.io/ShinyDistributionsApp/
 
 ## Blog article by the original author (in Japanese)
 
