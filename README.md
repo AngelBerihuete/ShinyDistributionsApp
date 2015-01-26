@@ -1,9 +1,11 @@
 ShinyDistributionsApp
 =====================
 
+## Shiny web app for live demonstration of probability distributions
 
-[Shiny web app for live demonstration of probability distributions](https://ksmzn.shinyapps.io/statdist/)
+- Original Japanese version: https://ksmzn.shinyapps.io/statdist/
+- English translation: 
 
-Blog article by the original author (in Japanese)
+## Blog article by the original author (in Japanese)
 
-[Shinyで確率分布を動かして遊べるページ作った](http://ksmzn.hatenablog.com/entry/statdist-shiny)
+- [Shinyで確率分布を動かして遊べるページ作った](http://ksmzn.hatenablog.com/entry/statdist-shiny)
