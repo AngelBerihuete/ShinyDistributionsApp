@@ -2,14 +2,14 @@
 library(shiny)
 library(rmarkdown)
 library(rCharts)
-pageTitle <- "いろいろな確率分布のパラメータをいじくるアプリ @ksmzn #Shiny "
-statDist <- "確率分布いろいろ"
+pageTitle <- "Probability distribution live demo app by @ksmzn #Shiny "
+statDist <- "Probability distributions"
 titleLink <- span(statDist)
 googleAnalytics <- tags$head(includeScript("js/google-analytics.js"))
 distPanel <- function(name){
   doc <- div(class="title-panel",
              span(class="dist", name),
-             a(href = paste('http://ja.wikipedia.org/wiki/', name, sep=''),
+             a(href = paste('http://en.wikipedia.org/wiki/', name, sep=''),
                img(src='img/external.png'),
                'Wikipedia'
                )
@@ -31,9 +31,9 @@ shinyUI(
         )
       )
     ),
-    navbarMenu("連続分布",
-      tabPanel("アーラン分布",
-        distPanel("アーラン分布"),
+    navbarMenu("Continuous distributions",
+      tabPanel("Erlang distribution",
+        distPanel("Erlang distribution"),
         fluidRow(
           column(12,
             helpText("$$
@@ -45,9 +45,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("erlang", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("erlang", "range", sep="."), "範囲",
+            sliderInput(paste("erlang", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
             sliderInput(paste("erlang", "shape", sep="."), "\\(n\\)",
                         min = 1, max = 20, value = 1, step= 1),
@@ -59,10 +59,10 @@ shinyUI(
           )
         )
       ),
-#       tabPanel("一般化双曲型分布"),
-#       tabPanel("ウィッシャート分布"),
-      tabPanel("F分布",
-        distPanel("F分布"),
+#       tabPanel("Generalized Hyperbolic Distribution"),
+#       tabPanel("Wishart distribution"),
+      tabPanel("F-distribution",
+        distPanel("F-distribution"),
         fluidRow(
           column(12,
             helpText("$$ f(x) = \\frac{1}{\\mathrm{B}(d_1/2, d_2/2)} \\; \\left(\\frac{d_1\\,x}{d_1\\,x + d_2}\\right)^{d_1/2} \\; \\left(1-\\frac{d_1\\,x}{d_1\\,x + d_2}\\right)^{d_2/2} \\; x^{-1} $$")
@@ -71,13 +71,13 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("f", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("f", "range", sep="."), "範囲",
+            sliderInput(paste("f", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
-            sliderInput(paste("f", "df1", sep="."), "自由度 \\(d_1\\)",
+            sliderInput(paste("f", "df1", sep="."), "DF \\(d_1\\)",
                         min = 1, max = 20, value = 1, step= 1),
-            sliderInput(paste("f", "df2", sep="."), "自由度 \\(d_2\\)",
+            sliderInput(paste("f", "df2", sep="."), "DF \\(d_2\\)",
                         min = 1, max = 20, value = 1, step= 1)
           ),
           mainPanel(
@@ -85,8 +85,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("非心F分布",
-        titlePanel("非心F分布"),
+      tabPanel("Noncentral F-distribution",
+        titlePanel("Noncentral F-distribution"),
         fluidRow(
           column(12,
             helpText("$$ f(x)
@@ -103,13 +103,13 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("ncf", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("ncf", "range", sep="."), "範囲",
+            sliderInput(paste("ncf", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
-            sliderInput(paste("ncf", "df1", sep="."), "自由度 \\(\\nu_1\\)",
+            sliderInput(paste("ncf", "df1", sep="."), "DF \\(\\nu_1\\)",
                         min = 1, max = 20, value = 1, step= 1),
-            sliderInput(paste("ncf", "df2", sep="."), "自由度 \\(\\nu_2\\)",
+            sliderInput(paste("ncf", "df2", sep="."), "DF \\(\\nu_2\\)",
                         min = 1, max = 20, value = 1, step= 1),
             sliderInput(paste("ncf", "ncp", sep="."), "非中心度 \\(\\lambda\\)",
                         min = 0, max = 20, value = 0, step= 0.1)
@@ -119,8 +119,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("カイ二乗分布",
-        distPanel("カイ二乗分布"),
+      tabPanel("Chi-squared distribution",
+        distPanel("Chi-squared distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x;k)=\\frac{(1/2)^{k/2}}{\\Gamma(k/2)} x^{k/2 - 1} e^{-x/2}
@@ -130,11 +130,11 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("chisq", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("chisq", "range", sep="."), "範囲",
+            sliderInput(paste("chisq", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
-            sliderInput(paste("chisq", "df", sep="."), "自由度 \\(k\\)",
+            sliderInput(paste("chisq", "df", sep="."), "DF \\(k\\)",
                         min = 1, max = 20, value = 1, step= 1)
           ),
           mainPanel(
@@ -142,24 +142,24 @@ shinyUI(
           )
         )
                ),
-      tabPanel("非心カイ二乗分布",
-        distPanel("非心カイ二乗分布"),
+      tabPanel("Noncentral chi-squared distribution",
+        distPanel("Noncentral chi-squared distribution"),
         fluidRow(
           column(12,
             helpText("$$f_X(x; k,\\lambda) =
               \\sum_{i=0}^\\infty \\frac{e^{-\\lambda/2} (\\lambda/2)^i}{i!} f_{Y_{k+2i}}(x)
               \\ \\ \\ \\ \\mathrm{for\\ } x > 0\\\\
-              \\\\ Y_q \\mathrm{\\ は自由度\\ } q \\mathrm{\\ のカイ二乗分布に従う\\ } $$")
+              \\\\ Y_q \\mathrm{\\ follows chi-squared distribution with DF \\ } q $$")
           )
         ),
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("ncChisq", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("ncChisq", "range", sep="."), "範囲",
+            sliderInput(paste("ncChisq", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
-            sliderInput(paste("ncChisq", "df", sep="."), "自由度 \\(k\\)",
+            sliderInput(paste("ncChisq", "df", sep="."), "DF \\(k\\)",
                         min = 1, max = 20, value = 1, step= 1),
             sliderInput(paste("ncChisq", "ncp", sep="."), "非中心度 \\(\\lambda\\)",
                         min = 0, max = 20, value = 0, step= 0.1)
@@ -169,9 +169,9 @@ shinyUI(
           )
         )
                ),
-#       tabPanel("ガンベル分布"),
-      tabPanel("ガンマ分布",
-        distPanel("ガンマ分布"),
+#       tabPanel("Gumbel distribution"),
+      tabPanel("Gamma distribution",
+        distPanel("Gamma distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x) = x^{k-1} \\frac{e^{-x/\\theta}}{\\Gamma(k)\\,\\theta^k}
@@ -181,9 +181,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("gamma", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("gamma", "range", sep="."), "範囲",
+            sliderInput(paste("gamma", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
             sliderInput(paste("gamma", "shape", sep="."), "形状 \\(k\\)",
                         min = 0, max = 20, value = 1, step= 0.1),
@@ -195,9 +195,9 @@ shinyUI(
           )
         )
                ),
-#       tabPanel("逆ガウス分布"),
-      tabPanel("コーシー分布",
-        distPanel("コーシー分布"),
+#       tabPanel("Inverse Gaussian distribution"),
+      tabPanel("Cauchy distribution",
+        distPanel("Cauchy distribution"),
         fluidRow(
           column(12,
             helpText("$$\\begin{align}f(x; x_0,\\gamma) &= { 1 \\over \\pi } \\left[ { \\gamma \\over (x - x_0)^2 + \\gamma^2  } \\right]\\end{align}$$")
@@ -206,9 +206,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("cauchy", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("cauchy", "range", sep="."), "範囲",
+            sliderInput(paste("cauchy", "range", sep="."), "Range",
                         min = -100, max = 100, value = c(-10, 10), step= 0.5),
             sliderInput(paste("cauchy", "location", sep="."), "位置 \\(x_0\\)",
                         min = -20, max = 20, value = 0, step= 0.1),
@@ -220,8 +220,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("指数分布",
-        distPanel("指数分布"),
+      tabPanel("Exponential distribution",
+        distPanel("Exponential distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x; \\lambda) = \\left\\{ \\begin{array}{ll} \\lambda e^{-\\lambda x} & (x \\geq 0) \\\\ 0 & (x < 0)\\end{array}\\right.$$")
@@ -230,9 +230,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("exp", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("exp","range",sep="."), "範囲",
+            sliderInput(paste("exp","range",sep="."), "Range",
                         min = -10, max = 100, value = c(0, 5), step= 0.5),
             sliderInput(paste("exp","rate",sep="."), "\\(\\lambda\\)",
                         min = 0, max = 50, value = 1, step= 0.1)
@@ -242,8 +242,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("正規分布",
-        distPanel("正規分布"),
+      tabPanel("Normal (Gaussian) distribution",
+        distPanel("Normal (Gaussian) distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x)=\\frac{1}{\\sqrt{2\\pi\\sigma^{2}}} \\exp\\!\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2} \\right)$$")
@@ -252,13 +252,13 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("norm", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("norm", "range", sep="."), "範囲",
+            sliderInput(paste("norm", "range", sep="."), "Range",
                         min = -100, max = 100, value = c(-10, 10), step= 1),
-            sliderInput(paste("norm", "mean", sep="."), "平均 \\(\\mu\\)",
+            sliderInput(paste("norm", "mean", sep="."), "Mean \\(\\mu\\)",
                         min = -50, max = 50, value = 0, step= 1),
-            sliderInput(paste("norm", "sd", sep="."), "標準偏差 \\(\\sigma\\)",
+            sliderInput(paste("norm", "sd", sep="."), "Standard deviation \\(\\sigma\\)",
                         min = 0, max = 10, value = 1, step= 0.5)
           ),
           mainPanel(
@@ -267,9 +267,9 @@ shinyUI(
           )
         )
       ),
-#       tabPanel("双曲線正割分布"),
-      tabPanel("対数正規分布",
-        distPanel("対数正規分布"),
+#       tabPanel("Hyperbolic secant distribution"),
+      tabPanel("Log-normal distribution",
+        distPanel("Log-normal distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x) = \\frac{1}{\\sqrt{2\\pi} \\sigma x} e^{-\\frac{ (\\ln{x}-\\mu)^2}{2\\sigma^2} }, \\quad 0<x< \\infty$$")
@@ -278,13 +278,13 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("lnorm", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("lnorm", "range", sep="."), "範囲",
+            sliderInput(paste("lnorm", "range", sep="."), "Range",
                         min = 0, max = 200, value = c(0, 20), step= 0.5),
-            sliderInput(paste("lnorm", "meanlog", sep="."), "平均log",
+            sliderInput(paste("lnorm", "meanlog", sep="."), "Meanlog",
                         min = -50, max = 50, value = 0, step= 0.05),
-            sliderInput(paste("lnorm", "sdlog", sep="."), "標準偏差log",
+            sliderInput(paste("lnorm", "sdlog", sep="."), "Standard deviationlog",
                         min = 0, max = 10, value = 1, step= 0.05)
           ),
           mainPanel(
@@ -292,8 +292,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("t分布",
-        distPanel("t分布"),
+      tabPanel("t distribution",
+        distPanel("t distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x) = \\frac{\\Gamma((\\nu+1)/2)}{\\sqrt{\\nu\\pi\\,}\\,\\Gamma(\\nu/2)} (1+x^2/\\nu)^{-(\\nu+1)/2}$$")
@@ -302,11 +302,11 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("t", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("t", "range", sep="."), "範囲",
+            sliderInput(paste("t", "range", sep="."), "Range",
                         min = -100, max = 100, value = c(-10, 10), step= 0.5),
-            sliderInput(paste("t", "df", sep="."), "自由度 \\(\\nu\\)",
+            sliderInput(paste("t", "df", sep="."), "DF \\(\\nu\\)",
                         min = 1, max = 20, value = 1, step= 1)
           ),
           mainPanel(
@@ -314,8 +314,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("非心t分布",
-        distPanel("非心t分布"),
+      tabPanel("Noncentral t distribution",
+        distPanel("Noncentral t distribution"),
         fluidRow(
           column(12,
             helpText("$$ f(x) =\\frac{\\nu^{\\frac{\\nu}{2}} \\exp\\left (-\\frac{\\nu\\mu^2}{2(x^2+\\nu)} \\right )}{\\sqrt{\\pi}\\Gamma(\\frac{\\nu}{2})2^{\\frac{\\nu-1}{2}}(x^2+\\nu)^{\\frac{\\nu+1}{2}}} \\int_0^\\infty y^\\nu\\exp\\left (-\\frac{1}{2}\\left(y-\\frac{\\mu x}{\\sqrt{x^2+\\nu}}\\right)^2\\right ) dy$$")
@@ -324,11 +324,11 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("nct", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("nct", "range", sep="."), "範囲",
+            sliderInput(paste("nct", "range", sep="."), "Range",
                         min = -100, max = 100, value = c(-10, 10), step= 0.5),
-            sliderInput(paste("nct", "df", sep="."), "自由度 \\(\\nu\\)",
+            sliderInput(paste("nct", "df", sep="."), "DF \\(\\nu\\)",
                         min = 1, max = 20, value = 1, step= 1),
             sliderInput(paste("nct", "ncp", sep="."), "非中心度 \\(\\mu\\)",
                         min = 0, max = 20, value = 0, step= 0.1)
@@ -338,10 +338,10 @@ shinyUI(
           )
         )
       ),
-#       tabPanel("ディリクレ分布"),
-#       tabPanel("パレート分布"),
-      tabPanel("ベータ分布",
-        distPanel("ベータ分布"),
+#       tabPanel("Dirichlet distribution"),
+#       tabPanel("Pareto distribution"),
+      tabPanel("Beta distribution",
+        distPanel("Beta distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x)=\\frac{x^{\\alpha-1}(1-x)^{\\beta-1}}{B(\\alpha,\\beta)}$$")
@@ -350,9 +350,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("beta", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("beta", "range", sep="."), "範囲",
+            sliderInput(paste("beta", "range", sep="."), "Range",
                         min = 0, max = 1, value = c(0, 1), step= 0.01),
             sliderInput(paste("beta", "shape1", sep="."), "形状 \\(\\alpha\\)",
                         min = 0, max = 20, value = 2, step= 0.1),
@@ -364,8 +364,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("非心ベータ分布",
-        titlePanel("非心ベータ分布"),
+      tabPanel("Noncentral beta distribution",
+        titlePanel("Noncentral beta distribution"),
         fluidRow(
           column(12,
             helpText("$$
@@ -378,9 +378,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("ncbeta", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("ncbeta", "range", sep="."), "範囲",
+            sliderInput(paste("ncbeta", "range", sep="."), "Range",
                         min = 0, max = 1, value = c(0, 1), step= 0.01),
             sliderInput(paste("ncbeta", "shape1", sep="."), "形状 \\(\\alpha\\)",
                         min = 0, max = 20, value = 2, step= 0.1),
@@ -394,11 +394,11 @@ shinyUI(
           )
         )
       ),
-#       tabPanel("ラプラス分布"),
-#       tabPanel("レイリー分布"),
-#       tabPanel("レヴィ分布"),
-      tabPanel("連続一様分布",
-        distPanel("連続一様分布"),
+#       tabPanel("Laplace distribution"),
+#       tabPanel("Rayleigh distribution"),
+#       tabPanel("Lévy distribution"),
+      tabPanel("(Continuous) uniform distribution",
+        distPanel("(Continuous) uniform distribution"),
         fluidRow(
           column(12,
             helpText("$$
@@ -417,9 +417,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("unif", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("unif", "range", sep="."), "範囲",
+            sliderInput(paste("unif", "range", sep="."), "Range",
                         min = -100, max = 100, value = c(0, 1), step= 0.5)
           ),
           mainPanel(
@@ -427,8 +427,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("ロジスティック分布",
-        distPanel("ロジスティック分布"),
+      tabPanel("Logistic distribution",
+        distPanel("Logistic distribution"),
         fluidRow(
           column(12,
             helpText("$$
@@ -439,9 +439,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("logis", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("logis", "range", sep="."), "範囲",
+            sliderInput(paste("logis", "range", sep="."), "Range",
                         min = -100, max = 100, value = c(-10, 10), step= 0.5),
             sliderInput(paste("logis", "location", sep="."), "位置 \\(\\mu\\)",
                         min = -20, max = 20, value = 2, step= 0.1),
@@ -453,8 +453,8 @@ shinyUI(
           )
         )
                ),
-      tabPanel("ワイブル分布",
-        distPanel("ワイブル分布"),
+      tabPanel("Weibull distribution",
+        distPanel("Weibull distribution"),
         fluidRow(
           column(12,
             helpText("$$
@@ -466,13 +466,13 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("weibull", "p_or_c", sep="."), "",
-                      c("確率密度関数"="p", "累積分布関数"="c")
+                      c("Probability density function (PDF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("weibull", "range", sep="."), "範囲",
+            sliderInput(paste("weibull", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 0.5),
-            sliderInput(paste("weibull", "shape", sep="."), "形状 \\(m\\)",
+            sliderInput(paste("weibull", "shape", sep="."), "Shape \\(m\\)",
                         min = 0.1, max = 20, value = 1, step= 0.1),
-            sliderInput(paste("weibull", "scale", sep="."), "尺度 \\(\\eta\\)",
+            sliderInput(paste("weibull", "scale", sep="."), "Scale \\(\\eta\\)",
                         min = 0.1, max = 20, value = 1, step= 0.1)
           ),
           mainPanel(
@@ -481,9 +481,9 @@ shinyUI(
         )
       )
     ),
-    navbarMenu("離散分布",
-      tabPanel("幾何分布",
-        distPanel("幾何分布"),
+    navbarMenu("Discrete distribution",
+      tabPanel("Geometric distribution",
+        distPanel("Geometric distribution"),
         fluidRow(
           column(12,
             helpText("$$\\Pr(X = k) = p(1-p)^{k}
@@ -493,11 +493,11 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("geom", "p_or_c", sep="."), "",
-                      c("確率関数"="p", "累積分布関数"="c")
+                      c("Probability mass function (PMF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("geom", "range", sep="."), "範囲",
+            sliderInput(paste("geom", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 1),
-            sliderInput(paste("geom", "prob", sep="."), "成功確率 \\(p\\)",
+            sliderInput(paste("geom", "prob", sep="."), "Probability of successful trial \\(p\\)",
                         min = 0, max = 1, value = 0.5, step= 0.01)
           ),
           mainPanel(
@@ -505,8 +505,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("超幾何分布",
-        distPanel("超幾何分布"),
+      tabPanel("Hypergeometric distribution",
+        distPanel("Hypergeometric distribution"),
         fluidRow(
           column(12,
             helpText("$$
@@ -518,15 +518,15 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("hyper", "p_or_c", sep="."), "",
-                      c("確率関数"="p", "累積分布関数"="c")
+                      c("Probability mass function (PMF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("hyper", "range", sep="."), "範囲",
+            sliderInput(paste("hyper", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 1),
-            sliderInput(paste("hyper", "m", sep="."), "成功状態の数 \\(m\\)",
+            sliderInput(paste("hyper", "m", sep="."), "Number of white balls in the urn \\(m\\)",
                         min = 0, max = 100, value = 50, step= 1),
-            sliderInput(paste("hyper", "n", sep="."), "失敗状態の数 \\(n\\)",
+            sliderInput(paste("hyper", "n", sep="."), "Number of black balls in the urn \\(n\\)",
                         min = 0, max = 100, value = 50, step= 1),
-            sliderInput(paste("hyper", "k", sep="."), "取り出す数 \\(k\\)",
+            sliderInput(paste("hyper", "k", sep="."), "Number of balls drawn from the urn \\(k\\)",
                         min = 0, max = 100, value = 10, step= 1)
           ),
           mainPanel(
@@ -534,10 +534,10 @@ shinyUI(
           )
         )
       ),
-#       tabPanel("ジップ分布",),
-#       tabPanel("多項分布",),
-      tabPanel("二項分布",
-        distPanel("二項分布"),
+#       tabPanel("Zipf distribution",),
+#       tabPanel("Multinomial distribution",),
+      tabPanel("Binomial distribution",
+        distPanel("Binomial distribution"),
         fluidRow(
           column(12,
             helpText("$$P[X=k]={n\\choose k}p^k(1-p)^{n-k}\\quad\\mbox{for}\\ k=0,1,2,\\dots,n 
@@ -547,13 +547,13 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("binom", "p_or_c", sep="."), "",
-                      c("確率関数"="p", "累積分布関数"="c")
+                      c("Probability mass function (PMF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("binom", "range", sep="."), "範囲",
+            sliderInput(paste("binom", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 1),
-            sliderInput(paste("binom", "size", sep="."), "試行回数 \\(n\\)",
+            sliderInput(paste("binom", "size", sep="."), "Number of trials \\(n\\)",
                         min = 0, max = 40, value = 10, step= 1),
-            sliderInput(paste("binom", "prob", sep="."), "成功確率 \\(p\\)",
+            sliderInput(paste("binom", "prob", sep="."), "Probability of successful trial \\(p\\)",
                         min = 0, max = 1, value = 0.5, step= 0.01)
           ),
           mainPanel(
@@ -561,8 +561,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("負の二項分布",
-        distPanel("負の二項分布"),
+      tabPanel("Negative binomial distribution",
+        distPanel("Negative binomial distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x)=P(X=x) = {x-1 \\choose r-1} p^r (1-p)^{x-r}
@@ -572,13 +572,13 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("nbinom", "p_or_c", sep="."), "",
-                      c("確率関数"="p", "累積分布関数"="c")
+                      c("Probability mass function (PMF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("nbinom", "range", sep="."), "範囲",
+            sliderInput(paste("nbinom", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 1),
-            sliderInput(paste("nbinom", "size", sep="."), "成功回数 \\(r\\)",
+            sliderInput(paste("nbinom", "size", sep="."), "target for number of successful trials \\(r\\)",
                         min = 1, max = 20, value = 1, step= 1),
-            sliderInput(paste("nbinom", "prob", sep="."), "成功確率 \\(p\\)",
+            sliderInput(paste("nbinom", "prob", sep="."), "Probability of successful trial \\(p\\)",
                         min = 0, max = 1, value = 0.5, step= 0.01)
           ),
           mainPanel(
@@ -586,10 +586,10 @@ shinyUI(
           )
         )
       ),
-#       tabPanel("ポアソン二項分布",),
-#       tabPanel("ベルヌーイ分布",),
-      tabPanel("ポアソン分布",
-        distPanel("ポアソン分布"),
+#       tabPanel("Poisson binomial distribution",),
+#       tabPanel("Bernoulli distribution",),
+      tabPanel("Poisson distribution",
+        distPanel("Poisson distribution"),
         fluidRow(
           column(12,
             helpText("$$P(X=k)=\\frac{\\lambda^k e^{-\\lambda}}{k!}
@@ -599,9 +599,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("pois", "p_or_c", sep="."), "",
-                      c("確率関数"="p", "累積分布関数"="c")
+                      c("Probability mass function (PMF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("pois", "range", sep="."), "範囲",
+            sliderInput(paste("pois", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 1),
             sliderInput(paste("pois", "lambda", sep="."), "\\(\\lambda\\)",
                         min = 1, max = 20, value = 1, step= 0.5)
@@ -611,8 +611,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("離散一様分布",
-        distPanel("離散一様分布"),
+      tabPanel("Discrete uniform distribution",
+        distPanel("Discrete uniform distribution"),
         fluidRow(
           column(12,
             helpText("$$
@@ -626,9 +626,9 @@ shinyUI(
         sidebarLayout(
           sidebarPanel(
             radioButtons(paste("dunif", "p_or_c", sep="."), "",
-                      c("確率関数"="p", "累積分布関数"="c")
+                      c("Probability mass function (PMF)"="p", "Cumulative distribution function (CDF)"="c")
             ),
-            sliderInput(paste("dunif", "range", sep="."), "範囲",
+            sliderInput(paste("dunif", "range", sep="."), "Range",
                         min = 0, max = 100, value = c(0, 20), step= 1)
             ),
           mainPanel(
@@ -638,8 +638,9 @@ shinyUI(
       )
     ),
     tabPanel(title="@ksmzn", value="https://twitter.com/ksmzn", icon=icon("twitter")),
-    tabPanel(title="GitHub", value="http://github.com/ksmzn/ShinyDistributionsApp", icon=icon("github")),
-    tabPanel(title="Blog", value="http://ksmzn.hatenablog.com/", icon=icon("pencil")),
+    tabPanel(title="GitHub(J)", value="http://github.com/ksmzn/ShinyDistributionsApp", icon=icon("github")),
+    tabPanel(title="GitHub(E)", value="https://github.com/kaz-yos/ShinyDistributionsApp", icon=icon("github")),
+    tabPanel(title="Blog(J)", value="http://ksmzn.hatenablog.com/", icon=icon("pencil")),
     googleAnalytics,
 #     tags$head(includeScript("addthis.js")),
 #     tags$head(includeScript("jquery.socialbutton-1.9.1.min.js")),
