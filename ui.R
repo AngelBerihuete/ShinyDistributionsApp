@@ -292,8 +292,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("t distribution",
-        distPanel("t distribution"),
+      tabPanel("Student's t-distribution",
+        distPanel("Student's t-distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x) = \\frac{\\Gamma((\\nu+1)/2)}{\\sqrt{\\nu\\pi\\,}\\,\\Gamma(\\nu/2)} (1+x^2/\\nu)^{-(\\nu+1)/2}$$")
@@ -314,8 +314,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("Noncentral t distribution",
-        distPanel("Noncentral t distribution"),
+      tabPanel("Noncentral t-distribution",
+        distPanel("Noncentral t-distribution"),
         fluidRow(
           column(12,
             helpText("$$ f(x) =\\frac{\\nu^{\\frac{\\nu}{2}} \\exp\\left (-\\frac{\\nu\\mu^2}{2(x^2+\\nu)} \\right )}{\\sqrt{\\pi}\\Gamma(\\frac{\\nu}{2})2^{\\frac{\\nu-1}{2}}(x^2+\\nu)^{\\frac{\\nu+1}{2}}} \\int_0^\\infty y^\\nu\\exp\\left (-\\frac{1}{2}\\left(y-\\frac{\\mu x}{\\sqrt{x^2+\\nu}}\\right)^2\\right ) dy$$")
