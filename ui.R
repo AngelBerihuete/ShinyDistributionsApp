@@ -242,8 +242,8 @@ shinyUI(
           )
         )
       ),
-      tabPanel("Normal (Gaussian) distribution",
-        distPanel("Normal (Gaussian) distribution"),
+      tabPanel("Normal distribution",
+        distPanel("Normal distribution"),
         fluidRow(
           column(12,
             helpText("$$f(x)=\\frac{1}{\\sqrt{2\\pi\\sigma^{2}}} \\exp\\!\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2} \\right)$$")
