@@ -330,7 +330,7 @@ shinyUI(
                         min = -100, max = 100, value = c(-10, 10), step= 0.5),
             sliderInput(paste("nct", "df", sep="."), "DF \\(\\nu\\)",
                         min = 1, max = 20, value = 1, step= 1),
-            sliderInput(paste("nct", "ncp", sep="."), "非中心度 \\(\\mu\\)",
+            sliderInput(paste("nct", "ncp", sep="."), "Noncentrality parameter \\(\\mu\\)",
                         min = 0, max = 20, value = 0, step= 0.1)
           ),
           mainPanel(
